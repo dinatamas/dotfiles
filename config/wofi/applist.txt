@@ -1,0 +1,20 @@
+alacritty
+atom
+audacity
+chromium
+code
+emacs
+feh
+firefox --new-window
+firefox --private-window
+gimp
+gparted
+lutris
+pavucontrol
+signal-desktop
+steam
+teams
+terminator
+thunar
+vlc
+zathura

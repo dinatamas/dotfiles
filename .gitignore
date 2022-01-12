@@ -1,0 +1,6 @@
+# Discard execution by-products.
+scripts/*
+!scripts/*.sh
+
+# Secret archive.
+resources/secrets.7z

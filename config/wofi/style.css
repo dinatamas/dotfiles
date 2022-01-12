@@ -1,0 +1,49 @@
+/*
+TODO: https://dotfiles.cloudninja.pw/config/wofi/
+TODO: https://cloudninja.pw/docs/wofi.html
+TODO: https://github.com/fosskers/dotfiles/blob/master/.config/wofi/style.css
+Supported GTK CSS properties: https://docs.gtk.org/gtk3/css-properties.html
+*/
+
+window {
+    padding: 5px;
+    border: 2px solid rgba(235,219,178,1.0);
+    background-color: rgba(40,40,40,1.0);
+}
+
+#input {
+    margin: 5px;
+    background: transparent;
+    color: rgba(235,219,178,1.0);
+    border: 2px solid rgba(235,219,178,1.0);
+}
+
+#inner-box {
+    margin: 5px;
+}
+
+#outer-box {
+    margin: 15px;
+    border: 2px transparent;
+}
+
+#scroll {
+    margin: 0px;
+}
+
+#entry {
+    /* text-transform: lowercase; */
+}
+
+#text {
+    margin: 5px;
+    color: rgba(235,219,178,1.0);
+}
+
+#entry:selected {
+    background-color: rgba(215,153,33,1.0);
+}
+
+#text:selected {
+    text-decoration-color: rgba(235,219,178,1.0);
+}

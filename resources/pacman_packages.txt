@@ -1,0 +1,69 @@
+acpilight alacritty alsa-utils archlinux-keyring atom autoconf automake
+base base-devel
+bind
+binutils
+bluez bluez-utils bzip2
+capnet-assist
+capt-src
+cerbere
+chromium code
+contractor
+cronie cups curl
+diffutils docker
+efibootmgr emacs
+feh file findutils firefox fish flameshot foremost fuse-overlayfs fzf
+gawk
+gcc
+gdb
+gettext
+git glfw-wayland gnu-free-fonts gnu-netcat go gparted grep
+groff
+grub gvfs-mtp gzip
+hexedit htop hwinfo
+hydra
+intel-compute-runtime
+intel-ucode
+jq
+less
+lib32-alsa-plugins
+lib32-giflib
+lib32-gnutls
+lib32-gst-plugins-base-libs
+lib32-gtk3
+lib32-libjpeg-turbo
+lib32-libldap
+lib32-libpng
+lib32-libpulse
+lib32-libva
+lib32-libxcomposite
+lib32-libxinerama
+lib32-libxslt
+lib32-mpg123
+lib32-nvidia-utils
+lib32-ocl-icd
+lib32-openal
+lib32-sqlite
+lib32-v4l-utils
+libtool
+light linux linux-firmware lshw
+lynx
+m4
+make man-db man-pages mc
+mpg123
+nasm neofetch neovim networkmanager nnn ntfs-3g
+nvidia nvidia-dkms nvidia-prime nvidia-settings nvidia-utils
+ocl-icd
+openal
+openssh openssl openvpn
+p7zip pacman pandoc patch pavucontrol pciutils pdftk
+pkgconf pulseaudio pulseaudio-bluetooth python python-virtualenv
+qbittorrent qt5-wayland
+re2 rsync ruby-mdless
+sed sshpass signal-desktop sudo sway swayidle swaylock
+teams terminator texinfo thunar tmux tree
+unrar unzip usbutils util-linux
+vim vlc
+wget which wl-clipboard wofi
+xorg-xwayland xorg-xlsclient
+yamllint
+zathura zathura-pdf-mupdf zip
