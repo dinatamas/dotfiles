@@ -1,6 +1,3 @@
-# Reference:
-# https://gist.github.com/michaelmrose/9595075b43f24aa903fa
-
 # User interface colors.
 set default-bg   rgba(40,40,40,0.7)
 set default-fg   #ebdbb2
@@ -10,19 +7,10 @@ set statusbar-fg #ebdbb2
 # Change the color of the documents.
 set recolor "true"
 set recolor-keephue "true"
-#set recolor-darkcolor rgba(0,0,0,1)
 set recolor-darkcolor rgba(40,40,40,1)
-#set recolor-lightcolor rgba(229,233,240,1)
 set recolor-lightcolor rgba(235,219,178,1)
 
-# Performance and miscellanous
+# Performance and miscellaneous
 set render-loading "false"
 set window-title-basename "true"
 set selection-clipboard "clipboard"
-# set smooth-scroll "true"
-
-# TODO: package installs (poppler/mupdf engine plugins)
-# TODO: CLI wrappers for package management
-# TODO: support for one-page scroll.
-# TODO: review config (don't "preload"?)
-# TODO: rebind F5 key?

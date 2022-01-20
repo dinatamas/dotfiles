@@ -4,7 +4,7 @@
 #
 # Instead of having to select the OS or wait for timeout at each boot,
 # by using this script it is possible to simply enter the OS except
-# when the shift key is held down during the boot process.
+# when the Shift key is held down during the boot process.
 #
 # For more details visit:
 # https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks

@@ -1,0 +1,4 @@
+3c3
+< GRUB_TIMEOUT=5
+---
+> GRUB_TIMEOUT=2

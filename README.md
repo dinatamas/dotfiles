@@ -6,22 +6,44 @@
 
 ## Repository
 
-* `config`: User-level configuration.
-* `docs`
+* `config/`: User-level configuration.
+* `docs/`
   * `misc.md`: A general collection of docs until further organization.
-* `resources`
+* `resources/`
   * `pacman_packages.txt`: Package list.
   * `pierre.asc.gpg`: The GPG key used to sign Arch Linux ISOs.
   * `pip_packages.txt`: Package list.
-* `scripts`
+  * `secrets.7z`: A password-protected archive of SSH keys, passwords, etc.
+* `scripts/`
+  * `cleanup.sh`: System maintenance and removal of untracked files.
   * `common.sh`: What every healthy bash script should have.
-  * `deploy.sh`: Single script to deploy the dotfiles on a system.
-  * `install1.sh`: 
-  * `install2.sh`: 
+  * `install.sh`: Arch Linux fresh install script #1.
+  * `install_chroot.sh`: Arch Linux fresh install script #2.
   * `prepare.sh`: Prepare an Arch Linux install medium in `/dev/sdb`.
-  * `secret.sh`: Manage secrets during migrations.
-* `system`: System-wide configuration.
+  * `secrets.sh`: Manage secrets during migrations.
+* `system/`: System-wide configuration.
 
 ## Tasks
 
-* `etc defaults grub` should be a patch instead!
+* Cooler packages: `ag`, `bat`, `delta`, `ripgrep`, `mdless`?
+* AUR packages: `teams`, `spotify`?
+* Fix: `gparted`, `flameshot`.
+* Deployment and upgrade script.
+* https://www.fosskers.ca/en/blog/wayland
+* Battery charging limit, auto shutoff.
+* Minimize battery usage, save all the power.
+* grub.d and pacman.conf.d instead of patching?
+* More details on printing with CUPS and CAPT.
+* https://www.reddit.com/r/unixporn/comments/qjjhps
+* https://github.com/natpen/awesome-wayland
+* Gaming on Arch Linux!
+* https://www.privacytools.io/
+* https://www.youtube.com/watch?v=Z7p9-m4cimg
+
+Configure rootless Docker.
+```
+echo "kernel.unprivileges_userns_clone=1" > /etc/sysctl.d/docker_rootless.conf
+echo "$user:100000:65536" >> /etc/subuid
+echo "$user:100000:65536" >> /etc/subgid
+curl -fsSL https://get.docker.com/rootless | sh
+```

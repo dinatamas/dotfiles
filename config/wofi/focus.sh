@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# https://www.reddit.com/r/swaywm/comments/fjsrk9/comment/fkvjctd/?utm_source=share&utm_medium=web2x&context=3
-
+#
+# Source:
+#   - https://www.reddit.com/r/swaywm/comments/fjsrk9/comment/fkvjctd/
+#
 swaymsg -t get_tree | jq -r '
         # descend to workspace or scratchpad
         .nodes[].nodes[]
@@ -22,7 +24,7 @@ swaymsg -t get_tree | jq -r '
         + (.w | gsub("^[^:]*:|<[^>]*>"; "") | sub("__i3_scratch"; "[S]"))
         + "\t " +  .name)
         ' | grep -v __i3 \
-          | wofi --show dmenu --prompt='Focus a window' | {
+          | wofi -ai --show dmenu --prompt='Focus a window' | {
     read -r id name
     swaymsg "[con_id=$id]" focus
 }

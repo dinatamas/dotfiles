@@ -1,48 +1,6 @@
 # Miscellaneous docs
 
-To generate a list of installed packages:
-`pacman -Qe | awk '{print $1}' > packages.txt`
-
-Help
-====
-
-A help page about getting help.
-
-## Cheatsheets
-
-Useful:
-  * zathura: defkeys.com/zathura-shortcuts
-  * git cheatsheets
-  * gnu emacs cheatsheet (personalized!)
-  * Work computer: linux cheatsheet.
-  * Bash / Fish shell scripting.
-  * rofi-like quick browse / help
-  * other help functionality: info, man, ...
-
-Direx cheatsheet:
-  * R - rename
-  * C - copy
-  * D - delete
-  * + - mkdir
-  * M - chmod
-  * L - load
-  * G - chgrp
-  * O - chown
-  * T - touch
-  * e - long ls form
-  * E - expand recursively
-  * ^ - up item
-  * g - refresh
-  * F - new file
-  * f - result of `file` command
-
-## Troubleshooting
-
-* Other TTYs can be opened up with `Ctrl+Alt+F<n>`
-* Hold `Shift` to open GRUB menu during bootup.
-
-Bash scripting guide
-====================
+## Bash scripting guide
 
 This document contains the information and guidelines with which
 I write my bash scripts. It also contains some usage information
@@ -60,39 +18,73 @@ Base reference: https://google.github.io/styleguide/shellguide.html
 * Use `varname="<text with newlines>"` to retain the newlines, and
   `read -r -d '' varname <<'EOF' || true <text with newlines> EOF` to not.
 
-## Background tasks
-* `&`, `nohup`, `disown`, `jobs`
+## Utilities
 
-## Colorscheme
+* Other TTYs can be opened up with `Ctrl+Alt+F<n>`
+* Hold `Shift` to open GRUB menu during bootup.
+* Networking: `nmtui`
+* Battery status from command line: `battery`
+* PDF manipulation: `pdftk`, `pandoc`
+* PDF viewing: `zathura`
+  * https://defkey.com/zathura-shortcuts
+* Image viewing: `feh`
+* Docker cleanup: `docker system prune -af --volumes`
+* Copy-paste instructions:
+  * Alacritty:
+    * Select using the mouse.
+    * `Ctrl+Shift+c` copies, `Ctrl+Shift+v` pastes.
+  * Tmux (mostly over SSH):
+    * `Ctrl+b` then `[`.
+    * Navigate using arrows, select using space.
+    * Copy using `Alt+w`.
+    * Paste using `Ctrl+b` then `]`.
+  * Emacs:
+    * `Ctrl+Space` to select text.
+    * `Alt+w` copies, `Ctrl+w` cuts, `Ctrl+y` pastes.
+  * Vim:
+    * `v` for visual, `Ctrl+v` for visual block selection.
+    * `y` copies, `d` cuts, `p` pastes.
+* Bluetooth:
+  * To start:
+    * `systemctl start bluetooth`
+    * `bluetoothctl power on`
+  * To connect:
+    * `bluetoothctl scan on`
+    * `bluetoothctl pair <MAC>`
+    * `bluetoothctl connect <MAC>`
+  * To finish:
+    * `bluetoothctl power off`
+    * `systemctl stop bluetooth`
+* Screenshot: `flameshot`
+* Background tasks: `&`, `nohup`, `disown`, `jobs`
+* Connect to the Internet (in the Archlinux ISO):
+  * Ethernet and USB tethering should work out-of-the-box.
+  * For wifi run `iwctl` and the following commands:
+    1. `device list`
+    1. `station <wlan ID> get-networks`
+    1. `station <wlan ID> connect <SSID>`
+* Get detailed hardware info: `dmidecode`
+  * For battery: check `/sys/class/power_supply/BAT0/`
+* Pendrive management in Linux:
+  * Locate: `fdisk -l` or `findmnt`
+  * Locate: `df`, make sure not mounted (`umount /dev/sdb1`)
+  * Check filesystem: `fsck /dev/sdb1`
+  * Create (format) the filesystem: `mkfs.ntfs /dev/sdb1`
+    * Or to skip writing zeros and checking bad sectors: `-f`
+  * Eject pendrive: `TODO`
 
-Whenever possible, the Gruvbox Dark Medium colorscheme is in use.
-
-Sources:
-* https://github.com/morhetz/gruvbox
-* https://github.com/dawikur/base16-gruvbox-scheme
-* https://gist.github.com/kamek-pf/2eae4f570061a97788a8a9ca4c893797
-* https://github.com/greduan/emacs-theme-gruvbox
-* https://github.com/eendroroy/alacritty-theme
-* https://github.com/aarowill/base16-alacritty
-* https://addons.mozilla.org/de/firefox/addon/gruvbox-dark/
-  * Or: Dark Reader extension with Sepia
-* https://github.com/alacritty/alacritty/wiki/Color-schemes
-* https://github.com/bardisty/gruvbox-rofi
-* Terminator has builtin support for Gruvbox.
-
-| #282828 | ----      |
-| #3c3836 | ---       |
-| #504945 | --        |
-| #665c54 | -         |
-| #bdae93 | +         |
-| #d5c4a1 | ++        |
-| #ebdbb2 | +++       |
-| #fbf1c7 | ++++      |
-| #fb4934 | red       |
-| #fe8019 | orange    |
-| #fabd2f | yellow    |
-| #b8bb26 | green     |
-| #8ec07c | aqua/cyan |
-| #83a598 | blue      |
-| #d3869b | purple    |
-| #d65d0e | brown     |
+### Wifi configuration
+* Using `nmtui` or `nmcli`.
+* `nmcli con add type wifi ifname wlo1 con-name <CN> ssid <SSID> -- `
+  `wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls 802-1x.phase2-auth mschapv2`
+  * CA validation: `802-1x.ca-cert <path>`
+  * Anonymous: `802-1x.anonymous-identity`
+  * Client certificate: `client-cert`, `private-key`, `private-key-password`?
+* To delete if mistaken: `nmcli con delete <CN>`
+* `nmcli --ask con up <CN>`
+  * Provide username and password.
+  * Or use password file, or pass as arguments.
+  * You can specify `802-1x.identity <USERNAME>`
+* Or manually edit the connection file.
+* `nmcli con add type wifi ifname wlo1 con-name eduroam ssid eduroam --`
+  `wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls 802-1x.phase2-auth pap 802-1x.identity <...>`

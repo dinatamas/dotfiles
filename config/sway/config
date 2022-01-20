@@ -8,18 +8,23 @@
 # Logo key.
 set $mod Mod4
 
-# Useful launchers.
-bindsym $mod+d exec ~/.config/wofi/launch.sh
-bindsym $mod+p exec ~/.config/wofi/power.sh
-bindsym $mod+f exec ~/.config/wofi/focus.sh
-
 # Disable "Loading..." symbol.
 set $exec exec --no-startup-id
 set $exec_always exec_always --no-startup-id
 
+# Useful launchers.
+bindsym $mod+d $exec ~/.config/wofi/launch.sh
+bindsym $mod+p $exec ~/.config/wofi/power.sh
+bindsym $mod+f $exec ~/.config/wofi/focus.sh
+
+# Most common programs.
+bindsym $mod+Return $exec alacritty
+bindsym $mod+Shift+Return $exec firefox
+
+# Screenlock.
+bindsym $mod+x $exec swaylock -c 3b4252
+
 # Background image.
-# This will launch:
-# swaybg -o * -i /usr/share/backgrounds/dinatamas/misty_forest.jpg -m fill
 output * bg /usr/share/backgrounds/dinatamas/misty_forest.jpg fill
 
 # Keyboard input options.
@@ -35,10 +40,6 @@ input "1267:12375:ELAN1300:00_04F3:3057_Touchpad" {
     natural_scroll enabled
     middle_emulation enabled
 }
-
-# Start a terminal.
-bindsym $mod+Return $exec alacritty
-bindsym $mod+Shift+Return $exec terminator
 
 # Kill focused window.
 bindsym $mod+Shift+q kill
@@ -88,8 +89,8 @@ bindsym $mod+v splitv
 
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+l layout toggle split
+bindsym $mod+t layout tabbed
+bindsym $mod+l layout toggle split  # horizontal / vertical
 
 # Make the current focus fullscreen
 bindsym $mod+Shift+f fullscreen
@@ -103,7 +104,7 @@ bindsym $mod+space focus mode_toggle
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
-# Sway has a "scratchpad", which is a bag of holding for windows.
+# Sway has a "scratchpad", which is a bag for holding windows.
 # You can send windows there and get them back later.
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
@@ -122,8 +123,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Brightness controls.
-# https://danmc.net/posts/sway-backlight/
-# https://wiki.archlinux.org/title/Backlight
 bindsym XF86MonBrightnessUp $exec sudo light -A 10
 bindsym XF86MonBrightnessDown $exec sudo light -U 10
 
@@ -136,6 +135,7 @@ bindsym XF86AudioMicMute $exec pactl set-source-mute 0 toggle
 # Power controls.
 bindsym XF86PowerOff $exec ~/.config/wofi/power.sh
 
+# Color variables.
 set $bg            #282828
 set $bg-inactive   #1d2021
 set $bg-urgent     #9d0006
@@ -147,25 +147,24 @@ set $statusline    #e0e0e0
 
 # Color scheme.
 # border | background | text | indicator | child_border
-client.focused          $text           $bg          $text        $text  $text
-client.unfocused        $bg-inactive  $bg-inactive $text-inactive $bar $bar
-client.focused_inactive $bg-inactive  $bg-inactive $text-inactive $bar $bar
-client.urgent           $bg-urgent    $bg-urgent   $text          $bar $bar
+client.focused          $text         $bg          $text          $text $text
+client.unfocused        $bg-inactive  $bg-inactive $text-inactive $bar  $bar
+client.focused_inactive $bg-inactive  $bg-inactive $text-inactive $bar  $bar
+client.urgent           $bg-urgent    $bg-urgent   $text          $bar  $bar
 
 # Status bar.
 bar {
     position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
     status_command while ~/.config/sway/status.sh; do sleep 1; done
 
     colors {
-        statusline #ebdbb2
-        background #282828
-        focused_workspace  #282828 #ebdbb2 #282828
-        active_workspace   #282828 #282828 #282828
-        inactive_workspace #282828 #282828 #ebdbb2
+        statusline $text
+        background $bg
+        focused_workspace  $bg $text $bg
+        active_workspace   $bg $bg   $bg
+        inactive_workspace $bg $bg   $text
     }
 }
 
@@ -173,34 +172,11 @@ bar {
 font pango:Source Code Pro Medium 11
 
 # No borders, just gaps.
+default_border none
 gaps inner 15
 gaps outer 15
-# smart_gaps on
-#for_window [class=".*"] border pixel 0
-#for_window [app_id=".*"] border pixel 0
-default_border none
-#default_floating_border none
-#for_window [instance=__focused__] border pixel 30
-#default_border pixel 8
+# Except for the terminal application.
 for_window [app_id="Alacritty"] border pixel 8
-for_window [app_id="terminator"] border pixel 8
 
-# Screenlock utility script.
-bindsym $mod+x $exec bash ~/.config/sway/lock.sh
-
-# wofi-style selector for open windows.
-# bindsym Mod1+Tab $exec ~/.config/sway/select-window.sh
-# TODO: Consider using a wofi-style opener for firefox tabs?
-# There was a unixporn entry somewhere related to that.
-
-default_orientation vertical
-
-# Proper flameshot support.
-# https://github.com/flameshot-org/flameshot/blob/master/docs/Sway%20and%20wlroots%20support.md
-$exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-$exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment \
-     --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-
-# This seems to be important.
-include /etc/sway/config.d/*
+# Do not wrap around edges.
+focus_wrapping no

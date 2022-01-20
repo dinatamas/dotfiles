@@ -1,9 +1,12 @@
 /*
-TODO: https://dotfiles.cloudninja.pw/config/wofi/
-TODO: https://cloudninja.pw/docs/wofi.html
-TODO: https://github.com/fosskers/dotfiles/blob/master/.config/wofi/style.css
-Supported GTK CSS properties: https://docs.gtk.org/gtk3/css-properties.html
-*/
+ * Wofi CCS stylesheet.
+ *
+ * Sources:
+ *   - https://dotfiles.cloudninja.pw/config/wofi/
+ *   - https://cloudninja.pw/docs/wofi.html
+ *   - https://github.com/fosskers/dotfiles/blob/master/.config/wofi/style.css
+ *   - https://docs.gtk.org/gtk3/css-properties.html
+ */
 
 window {
     padding: 5px;
@@ -29,10 +32,6 @@ window {
 
 #scroll {
     margin: 0px;
-}
-
-#entry {
-    /* text-transform: lowercase; */
 }
 
 #text {

@@ -1,5 +1,0 @@
-.git
-
-# Python byte-compiled files.
-__pycache__
-__pytest_cache_
