@@ -98,3 +98,4 @@ arch-chroot /mnt /bin/bash -c "/opt/repo/dotfiles/scripts/install_chroot.sh"
 echo "Done!"
 echo "Please reboot."
 _dt_ask_proceed
+# TODO: Cleanup the dotfiles dir.

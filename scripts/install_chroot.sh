@@ -63,7 +63,7 @@ passwd $user
 echo "Copying configuration files..."
 _dt_ask_proceed
 mkdir -p /home/$user/.config
-chown $user:$user /home/$user/.config
+chown -R $user:$user /home/$user/.config
 rsync -pr /opt/repo/dotfiles/config/* /home/$user/.config/
 
 echo "Configuring sudo..."

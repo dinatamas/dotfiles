@@ -75,16 +75,16 @@ Base reference: https://google.github.io/styleguide/shellguide.html
 
 ### Wifi configuration
 * Using `nmtui` or `nmcli`.
-* `nmcli con add type wifi ifname wlo1 con-name <CN> ssid <SSID> -- `
-  `wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls 802-1x.phase2-auth mschapv2`
+* EDUROAM:
+  `nmcli con add type wifi ifname wlo1 con-name eduroam ssid eduroam --`
+  `wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls 802-1x.phase2-auth pap 802-1x.identity <...>`
   * CA validation: `802-1x.ca-cert <path>`
   * Anonymous: `802-1x.anonymous-identity`
   * Client certificate: `client-cert`, `private-key`, `private-key-password`?
+  * For corporate networks: `pap` -> `mschapv2`
+* To show: `nmcli con show`
 * To delete if mistaken: `nmcli con delete <CN>`
 * `nmcli --ask con up <CN>`
   * Provide username and password.
   * Or use password file, or pass as arguments.
-  * You can specify `802-1x.identity <USERNAME>`
 * Or manually edit the connection file.
-* `nmcli con add type wifi ifname wlo1 con-name eduroam ssid eduroam --`
-  `wifi-sec.key-mgmt wpa-eap 802-1x.eap ttls 802-1x.phase2-auth pap 802-1x.identity <...>`
