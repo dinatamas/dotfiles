@@ -52,6 +52,9 @@ nnoremap . :
 nnoremap ; :
 nnoremap q: <nop>
 nnoremap Q: <nop>
+" I know recording is cool but I never use it.
+" https://stackoverflow.com/a/1527824
+map q <Nop>
 
 " Accept :W and :Q as well!
 " https://stackoverflow.com/a/10590421

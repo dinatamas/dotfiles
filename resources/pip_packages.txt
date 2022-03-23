@@ -1,3 +1,6 @@
+cryptography
 ipython
+more-itertools
+paramiko
 requests
 tqdm

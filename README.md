@@ -1,5 +1,8 @@
 # Dotfiles
 
+TODO: Set up ~/.config/git/config?
+TODO: Create /opt/go/?
+
 ## Usage
 
 * `sudo curl -fsLS tinyurl.com/dtdot | bash`

@@ -1,4 +1,8 @@
-3c3
+4c4
 < GRUB_TIMEOUT=5
 ---
 > GRUB_TIMEOUT=2
+6c6
+< GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
+---
+> GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet pcie_aspm.policy=performance"
