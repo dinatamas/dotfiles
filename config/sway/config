@@ -101,9 +101,6 @@ bindsym $mod+Shift+space floating toggle
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
 
-# Move focus to the parent container
-bindsym $mod+a focus parent
-
 # Sway has a "scratchpad", which is a bag for holding windows.
 # You can send windows there and get them back later.
 bindsym $mod+Shift+minus move scratchpad
@@ -134,6 +131,19 @@ bindsym XF86AudioMicMute $exec pactl set-source-mute 0 toggle
 
 # Power controls.
 bindsym XF86PowerOff $exec ~/.config/wofi/power.sh
+
+# Screenshot entire screen.
+bindsym Print exec grim -c - | tee "$GRIM_DEFAULT_DIR/$(date '+%Y-%m-%d_%H-%M-%S').png" | wl-copy
+# Screenshot the selected area of the screen
+bindsym Shift+Print exec grim -c -g "$(slurp)" - | tee "$GRIM_DEFAULT_DIR/$(date '+%Y-%m-%d_%H-%M-%S').png" | wl-copy
+# TODO: Screenshot the selected window. There is a way!
+
+# Screenrecord entire screen.
+bindsym Ctrl+Print exec ~/.config/sway/record.sh
+# Screenrecord the selected area of the screen.
+# TODO: Find a better key combination for these!
+# bindsym Ctrl+Shift+Print exec ~/.config/sway/record.sh -g "$(slurp)"
+# TODO: Screenrecord the selected window. Is there a way?
 
 # Color variables.
 set $bg            #282828

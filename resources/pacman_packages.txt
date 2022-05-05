@@ -6,7 +6,7 @@ ctags cronie cups curl
 diffutils dmidecode docker
 efibootmgr expac
 feh file findutils firefox fish foremost fuse-overlayfs fzf
-gawk gcc gdb git 
+gawk gcc gdb git grim
 glfw-wayland gnu-free-fonts gnu-netcat
 go gparted grep grub gvfs-mtp gzip
 hexedit htop hwinfo
@@ -22,7 +22,7 @@ pkgconf pulseaudio pulseaudio-bluetooth
 python python-pip python-virtualenv
 qbittorrent qt5-wayland
 re2 rsync
-sed speedtest-cli sshpass sudo sway swayidle swaylock
+sed slurp speedtest-cli sshpass sudo sway swayidle swaylock
 texinfo thunar tmux tree
 unrar unzip usbutils util-linux
 vim vlc

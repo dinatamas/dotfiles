@@ -71,19 +71,19 @@ set -x  LESS_TERMCAP_us (printf "\033[01;32m")
 set -xg LS_COLORS            $LS_COLORS'tw=00;33:ow=01;33:'
 
 # Change dotfile paths.
-set -x  CUDA_CACHE_PATH      "~/.cache/nv"
-set -x  DOCKER_CONFIG        "~/.config/docker"
-set -x  EMACS_USER_DIRECTORY "~/.config/emacs.d"
-set -x  GIT_CONFIG           "~/.config/git/config"
-set -x  GNUPGHOME            "~/.local/gnupg"
-set -x  HISTFILE             "~/.local/bash_history"
-set -x  IPYTHONDIR           "~/.config/ipython"
-set -x  _JAVA_OPTIONS        "-Djava.util.prefs.userRoot=~/.config/java"
-set -x  LESSHISTFILE         "~/.config/lesshst"
-set -x  NUGET_PACKAGES       "~/.cache/NuGetPackages"
-set -x  PYLINTHOME           "~/.cache/pylint"
-mkdir -p ~/.local/share/wineprefixes/default
-set -x  WINEPREFIX           "~/.local/share/wineprefixes/default"
+# set -x  CUDA_CACHE_PATH      "$HOME/.cache/nv"
+set -x  DOCKER_CONFIG        "$HOME/.config/docker"
+set -x  EMACS_USER_DIRECTORY "$HOME/.config/emacs.d"
+set -x  GIT_CONFIG           "$HOME/.config/git/config"
+set -x  GNUPGHOME            "$HOME/.local/gnupg"
+set -x  GRIM_DEFAULT_DIR     "$HOME/.local/screenshots"
+set -x  HISTFILE             "$HOME/.local/bash_history"
+set -x  IPYTHONDIR           "$HOME/.config/ipython"
+set -x  _JAVA_OPTIONS        "-Djava.util.prefs.userRoot=$HOME/.config/java"
+set -x  LESSHISTFILE         "$HOME/.config/lesshst"
+set -x  NUGET_PACKAGES       "$HOME/.cache/NuGetPackages"
+set -x  PYLINTHOME           "$HOME/.cache/pylint"
+set -x  WINEPREFIX           "$HOME/.local/share/wineprefixes/default"
 
 # Configure paths.
 set -xg GOPATH               "/opt/go/"
@@ -91,9 +91,10 @@ set -xg PATH                 "/opt/dinatamas/" "$HOME/.local/bin" $PATH
 set -x  PYTHONPATH           "./" "/opt/repo/" $PYTHONPATH
 
 # Application-specific env vars.
+set -xg DOCKER_BUILDKIT 1
 set -xg MOZ_ENABLE_WAYLAND 1
 set -xg PYTHONDONTWRITEBYTECODE 1
-set -xg DOCKER_BUILDKIT 1
+set -xg QT_QPA_PLATFORM "wayland"
 
 # Default program variables.
 set -xg BROWSER "firefox"

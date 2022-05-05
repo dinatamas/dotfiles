@@ -39,10 +39,13 @@ set expandtab
 set hlsearch
 set ignorecase
 set incsearch
-set number
+set number relativenumber
 set ruler
+set scrolloff=100
 set shiftwidth=4
 set showcmd
+set showmode
+set smartcase
 set tabstop=4
 syntax on
 
@@ -55,6 +58,9 @@ nnoremap Q: <nop>
 " I know recording is cool but I never use it.
 " https://stackoverflow.com/a/1527824
 map q <Nop>
+
+" Tired of pressing Esc all the time.
+inoremap jj <Esc>
 
 " Accept :W and :Q as well!
 " https://stackoverflow.com/a/10590421
@@ -79,6 +85,17 @@ cnoreabbrev <expr> f getcmdtype() == ":" && getcmdline() == 'f' ? 'tabf' : 'f'
 
 " When you close a tab, go back to the first.
 au TabClosed * :tabn 1
+
+" Home should first go to the end of indentation.
+function ExtendedHome()
+    let column = col('.')
+    normal! ^
+    if column == col('.')
+        normal! 0
+    endif
+endfunction
+noremap <silent> <Home> :call ExtendedHome()<CR>
+inoremap <silent> <Home> <C-O>:call ExtendedHome()<CR>
 
 " https://unix.stackexchange.com/a/612641
 if has("termguicolors")
@@ -140,6 +157,27 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
     \ 'AcceptSelection("t")': ['<cr>'],
     \ }
+
+" Folding.
+" https://vi.stackexchange.com/a/31436
+set foldmethod=indent
+set foldlevelstart=20
+set list listchars=extends:>,precedes:<
+
+" Wrapping.
+" https://vi.stackexchange.com/q/88
+set nowrap
+au Filetype txt setlocal wrap
+" TODO: Do wrap in Markdown, LaTeX, etc. modes too!
+
+" Highlight bad whitespace.
+" TODO: Also highlight tab characters + use expandtab?
+highlight BadWhitespace ctermbg=red guibg=#cc241d
+match BadWhitespace /\s\+$/
+autocmd BufWinEnter * match BadWhitespace /\s\+$/
+autocmd InsertEnter * match BadWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match BadWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " File type support.
 au BufNewFile,BufRead *git/config,gitconfig setf gitconfig

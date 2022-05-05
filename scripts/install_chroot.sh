@@ -89,3 +89,6 @@ pip install -U -r 'resources/pip_packages.txt'
 
 git -C '/opt/repo/dotfiles' remote set-url \
     origin 'git@github.com:dinatamas/dotfiles.git'
+
+mkdir -p /home/dinatamas/.local/screenshots
+mkdir -p /home/dinatamas/.local/share/wineprefixes/default
