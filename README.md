@@ -2,6 +2,10 @@
 
 TODO: Set up ~/.config/git/config?
 TODO: Create /opt/go/?
+TODO: [](https://wiki.archlinux.org/title/simple_stateful_firewall)
+netstat -plnt
+TODO: net-tools is deprecated. What to use?
+ss, ip route, route, iproute2, ip a
 
 ## Usage
 
