@@ -45,6 +45,8 @@ prime-run vulkaninfo
 
 TODO: Must reboot!
 
+TODO: should not have ~/Games!
+
 ### Wine configuration
 
 TODO
