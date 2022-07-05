@@ -88,3 +88,21 @@ Base reference: https://google.github.io/styleguide/shellguide.html
   * Provide username and password.
   * Or use password file, or pass as arguments.
 * Or manually edit the connection file.
+
+### Printing
+
+* [1](https://wiki.archlinux.org/title/CUPS)
+* `sudo pacman -Sy cups cups-pdf`
+* `sudo systemctl start cups`
+* `lsusb`
+  * Canon, Inc. LBP6300
+* [2](https://wiki.archlinux.org/title/Canon_CAPT)
+* [3](https://wiki.archlinux.org/title/CUPS/Printer-specific_problems#Canon)
+* Enable multilib.
+* `yay -Sy capt-src`
+* `lpinfo -m`
+  * CNCUPSLBP6300CAPTK.ppd
+* `sudo lpadmin -p lbp6300 -E -v ccp://localhost:59787 -m CNCUPSLBP6300CAPTK.ppd`
+* `sudo ccpdadmin -p lbp6300 -o /dev/usb/lp0`
+* `sudo systemctl start ccpd`
+* Ready to  print.

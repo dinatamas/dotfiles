@@ -1,4 +1,4 @@
-# Discard execution by-products.
+# Execution by-products.
 scripts/*
 !scripts/*.sh
 

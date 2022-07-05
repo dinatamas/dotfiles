@@ -6,54 +6,31 @@
 # Disable greeting.
 set fish_greeting ""
 
-# Default parameters to command line programs.
-alias code      "code --extensions-dir ~/.config/vscode"
+# Sane defaults and better alternatives.
+alias cp        "rsync -ah"
+alias dd        "dd status=progress"
 alias df        "df -ha"
 alias diff      "diff --color=auto"
 alias du        "du -h --max-depth=1"
 alias feh       "feh --scale-down --draw-filename --auto-rotate --auto-reload"
-alias grep      "grep --color=auto -nIT --exclude-dir=.git"
+alias grep      "grep --color=auto -nI --exclude-dir=.git"
 alias mkdir     "mkdir -p"
 alias rm        "rm -i"
 alias ping      "ping -c 3"
+alias python    "ipython"
 alias shutdown  "shutdown now"
-alias svn       "svn --config-dir ~/.config/subversion"
 alias sway      "sway --unsupported-gpu"
 alias tmux      "tmux -u"
-alias wget      "wget --hsts-file ~/.cache/wget-hsts"
+alias vim       "nvim"
 alias xelatex   "xelatex -halt-on-error"
 
-# Replace programs with improved alternatives.
-alias cp        "rsync -ah --info=progress2"
-alias dd        "dd status=progress"
-alias python    "ipython"
-alias vim       "nvim"
-
-# Utilities.
-alias battery   "cat /sys/class/power_supply/BAT0/capacity"
+# Move dotfiles away from home.
+alias code      "code --extensions-dir ~/.config/vscode"
+alias svn       "svn --config-dir ~/.config/subversion"
+alias wget      "wget --hsts-file ~/.cache/wget-hsts"
 
 # Use cd and ls together.
-function cd
-    builtin cd $argv; and ls
-end
-
-# Print everything, just not the home directory (because it is cluttered).
-# https://wiki.archlinux.org/title/XDG_Base_Directory
-# If all else fails, run apps as different users / change $HOME.
-functions --copy "ls" "ls_original"
-function ls --wraps='ls_original'
-    set ls_args "-hFC" "--color=auto" "-A"
-    if test (count $argv) -eq 0 -a $PWD = ~
-        set -e ls_args[3]
-    else if test (count $argv) -eq 1
-        if test -d $argv[1]
-            if test (realpath $argv[1]) = ~
-                set -e ls_args[3]
-            end
-        end
-    end
-    ls_original $ls_args $argv
-end
+function cd; builtin cd $argv && ls; end
 
 # Mute the less pager.
 set -x  LESS "$LESS -R -Q"
@@ -70,25 +47,26 @@ set -x  LESS_TERMCAP_us (printf "\033[01;32m")
 # Don't print directory background colors.
 set -xg LS_COLORS            $LS_COLORS'tw=00;33:ow=01;33:'
 
-# Change dotfile paths.
-# set -x  CUDA_CACHE_PATH      "$HOME/.cache/nv"
-set -x  DOCKER_CONFIG        "$HOME/.config/docker"
-set -x  EMACS_USER_DIRECTORY "$HOME/.config/emacs.d"
-set -x  GIT_CONFIG           "$HOME/.config/git/config"
-set -x  GNUPGHOME            "$HOME/.local/gnupg"
-set -x  GRIM_DEFAULT_DIR     "$HOME/.local/screenshots"
-set -x  HISTFILE             "$HOME/.local/bash_history"
-set -x  IPYTHONDIR           "$HOME/.config/ipython"
-set -x  _JAVA_OPTIONS        "-Djava.util.prefs.userRoot=$HOME/.config/java"
-set -x  LESSHISTFILE         "$HOME/.config/lesshst"
-set -x  NUGET_PACKAGES       "$HOME/.cache/NuGetPackages"
-set -x  PYLINTHOME           "$HOME/.cache/pylint"
-set -x  WINEPREFIX           "$HOME/.local/share/wineprefixes/default"
+# Move dotfiles away from home.
+# https://wiki.archlinux.org/title/XDG_Base_Directory
+set -xg CUDA_CACHE_PATH      "$HOME/.cache/nv"
+set -xg DOCKER_CONFIG        "$HOME/.config/docker"
+set -xg EMACS_USER_DIRECTORY "$HOME/.config/emacs.d"
+set -xg GIT_CONFIG           "$HOME/.config/git/config"
+set -xg GNUPGHOME            "$HOME/.local/gnupg"
+set -xg GRIM_DEFAULT_DIR     "$HOME/.local/screenshots"
+set -xg HISTFILE             "$HOME/.local/bash_history"
+set -xg IPYTHONDIR           "$HOME/.config/ipython"
+set -xg _JAVA_OPTIONS        "-Djava.util.prefs.userRoot=$HOME/.config/java"
+set -xg LESSHISTFILE         "$HOME/.config/lesshst"
+set -xg NUGET_PACKAGES       "$HOME/.cache/NuGetPackages"
+set -xg PYLINTHOME           "$HOME/.cache/pylint"
+set -xg WINEPREFIX           "$HOME/.local/share/wineprefixes/default"
 
 # Configure paths.
 set -xg GOPATH               "/opt/go/"
 set -xg PATH                 "/opt/dinatamas/" "$HOME/.local/bin" $PATH
-set -x  PYTHONPATH           "./" "/opt/repo/" $PYTHONPATH
+set -xg PYTHONPATH           "./" "/opt/repo/" $PYTHONPATH
 
 # Application-specific env vars.
 set -xg DOCKER_BUILDKIT 1
@@ -98,12 +76,12 @@ set -xg QT_QPA_PLATFORM "wayland"
 
 # Default program variables.
 set -xg BROWSER "firefox"
-set -xg EDITOR  "emacs"
+set -xg EDITOR  "nvim"
 set -xg PAGER   "less"
-set -xg VISUAL  "emacs"
+set -xg VISUAL  "nvim"
 
 # Long prompts are not good.
-set fish_prompt_pwd_dir_length 3
+set -g fish_prompt_pwd_dir_length 3
 
 # Avoid advanced config for stupid shells.
 if not [ "$TERM" = "linux" ]
@@ -111,9 +89,8 @@ if not [ "$TERM" = "linux" ]
     # Cool but simple shell prompt.
     function fish_prompt
         set stat $status
-        printf '\n╭──(%s%s%s ○ %s%s%s) - [%s%s%s] - %s(%s)%s\n╰─%sλ%s ' \
+        printf '\n╭──(%s%s%s) ○ [%s%s%s] - %s(%s)%s\n╰─%sλ%s ' \
             (set_color blue) $USER (set_color normal) \
-            (set_color blue) $hostname (set_color normal) \
             (set_color blue) (prompt_pwd) (set_color normal) \
             (set_color \
                 (if test $stat -eq 0; echo green; else; echo red; end)) \
@@ -125,10 +102,15 @@ if not [ "$TERM" = "linux" ]
         #     $USER $hostname (prompt_pwd) $stat
     end
 
-else
+end
 
-    if [ (tty) = "/dev/tty1" ]
-         sway
-    end
+# Local configuration overwrites.
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
+    source $LOCAL_CONFIG
+end
 
+# Start the graphical interface at first login.
+if [ (tty) = "/dev/tty1" ]
+    sway
 end

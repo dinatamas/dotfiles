@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Prints the current color palette.
+# Displays the current color palette.
 # https://askubuntu.com/a/821163
 #
 for i in {0..255} ; do

@@ -4,7 +4,6 @@
 #   - https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 #   - https://gist.github.com/ruddra/900e48cb65645ccfcf57545c7e192972
 #
-
 shell:
   program: /usr/bin/fish
 
@@ -24,7 +23,6 @@ window:
 
 font:
   size: 10.0
-
   normal:
     family: Source Code Pro
     style: Regular
