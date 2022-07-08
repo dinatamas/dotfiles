@@ -7,17 +7,19 @@
 set fish_greeting ""
 
 # Use bash in debug terminals.
-if string match '/dev/tty*' (tty)
+if string match -r '/dev/tty[2-9]' (tty) > /dev/null
   bash
   exit
 end
 
-# Start tmux when not already in it.
-# The fish shell inside tmux will initialize itself.
-if status --is-interactive
- and not set -q TMUX
-  exec tmux -u a || tmux -u
-  exit
+if ! string match '/dev/tty*' (tty) > /dev/null
+  # Start tmux when not already in it.
+  # The fish shell inside tmux will initialize itself.
+  if status --is-interactive
+   and not set -q TMUX
+    exec tmux -u a || tmux -u
+    exit
+  end
 end
 
 # Set tmux option to destroy the session.
