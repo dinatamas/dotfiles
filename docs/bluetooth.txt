@@ -1,0 +1,21 @@
+Bluetooth
+=========
+
+[Wiki](https://wiki.archlinux.org/title/bluetooth)
+
+Packages to install: bluez, bluez-utils
+
+Configure bluetooth low energy (BLE) devices:
+  [1](https://stackoverflow.com/a/65587222)
+  Inside bluetoothctl: `menu scan`, `transport le`, `back`, `scan on`
+
+  - To start:
+    - `systemctl start bluetooth`
+    - `bluetoothctl power on`
+  - Connect to a device:
+    - `bluetoothctl scan on`
+    - `bluetoothctl pair <MAC>`
+    - `bluetoothctl connect <MAC>`
+  - To stop:
+    - `bluetoothctl power off`
+    - `systemctl stop bluetooth`

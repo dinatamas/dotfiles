@@ -1,12 +1,43 @@
+[alias]
+  # Useful commands I often forget:
+  # git add -p
+  # git branch -a
+  # git show <commit>
+  a = "!git status --short | peco | awk '{print $2}' | xargs git add"
+  df = "!git hist | peco | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+  find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S\"$@\" | peco | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
+  hist = log --all --decorate --date=relative --graph --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\"
+  # TODO: llog should include the entire commit message!
+  llog = log --name-status --date=relative --graph --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\"
+  unmerged-edit = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+  unmerged-add = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 [core]
-    autocrlf  = input
-    editor    = nvim
-    quotepath = off
+  autocrlf     = input
+  editor       = nvim
+  excludesfile = ~/.config/git/gitignore
+  quotepath    = off
 [credential]
     helper = cache --timeout=3600
+[diff]
+  tool = nvimdiff
+[difftool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+  path = 
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
+[ghq]
+  root = /opt/repo
 [init]
-    defaultBranch = main
+  defaultBranch = main
+[merge]
+  tool = nvimdiff
+[mergetool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [user]
-    name     = Tamás Dina
-    email    = 53911660+dinatamas@users.noreply.github.com
-    username = dinatamas
+  name     = Tamás Dina
+  email    = 53911660+dinatamas@users.noreply.github.com
+  username = dinatamas

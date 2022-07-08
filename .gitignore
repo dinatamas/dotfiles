@@ -1,6 +1,6 @@
 # Execution by-products.
-scripts/*
-!scripts/*.sh
+install/scripts/*
+!install/scripts/*.sh
 
 # Secret archive.
-resources/secrets.7z
+install/resources/secrets.7z

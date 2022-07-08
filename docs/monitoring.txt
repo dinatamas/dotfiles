@@ -1,0 +1,8 @@
+System monitoring
+=================
+
+Use the `btop` command.
+
+Check the battery: `cat /sys/class/power_supply/BAT0/`
+
+Get detailed hardware info: `dmidecode`
