@@ -8,7 +8,6 @@ Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
 Plug 'dag/vim-fish'
 Plug 'tomlion/vim-solidity'
-Plug 'altercation/vim-colors-solarized'
 
 "
 " The following is copy-pasted!

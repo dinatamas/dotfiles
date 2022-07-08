@@ -46,9 +46,6 @@ nnoremap x "_x
 nnoremap + <C-a>
 nnoremap - <C-x>
 
-" Delete a word backwards
-" nnoremap dw vb"_d
-
 " Select all
 nmap <C-a> gg<S-v>G
 

@@ -4,14 +4,19 @@
 #   - https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 #   - https://gist.github.com/ruddra/900e48cb65645ccfcf57545c7e192972
 #
+
+# Start tmux directly.
 shell:
-  program: /usr/bin/fish
+  program: /usr/bin/tmux
+  args:
+    - -u
 
 # $TERM=alacritty doesn't advertise true colors.
 # Setting it to a terminal value that does will
 # allow applications to use all colors.
 env:
   TERM: xterm-256color
+  TMUX_AUTOKILL: yes
 
 window:
   padding:

@@ -6,6 +6,25 @@
 # Disable greeting.
 set fish_greeting ""
 
+# Use bash in debug terminals.
+if string match '/dev/tty*' (tty)
+  bash
+  exit
+end
+
+# Start tmux when not already in it.
+# The fish shell inside tmux will initialize itself.
+if status --is-interactive
+ and not set -q TMUX
+  exec tmux -u a || tmux -u
+  exit
+end
+
+# Set tmux option to destroy the session.
+if test $TMUX_AUTOKILL
+  tmux set-option destroy-unattached on
+end
+
 # Configure paths.
 set -xg GOPATH     "/opt/go"
 set -xg PATH       "$HOME/.local/bin" "$GOPATH/bin" $PATH
@@ -13,7 +32,7 @@ set -xg PYTHONPATH "./" "/opt/repo/" $PYTHONPATH
 
 # Sane defaults and better alternatives.
 alias cat       "bat -p"
-alias cp        "rsync -ah"  # TODO: interative?
+alias cp        "rsync -ah"
 alias dd        "dd status=progress"
 alias df        "df -ha"
 alias diff      "diff --color=auto"
@@ -76,12 +95,11 @@ set -xg PAGER   "less"
 set -xg VISUAL  "nvim"
 
 # Prompt config (managed by tide).
+source ~/.config/fish/conf.d/gruvbox.fish
 theme_gruvbox dark medium
-source ~/.config/fish/conf.d/tide.conf
+source ~/.config/fish/conf.d/tide.fish
 
-# TODO: tmux otherwise.
-# TODO: other /dev/tty.
-if [ (tty) = "/dev/tty1" ]
-    # Start the graphical interface at first login.
-    sway
+# Start the graphical interface at first login.
+if test (tty) = "/dev/tty1"
+  sway
 end
