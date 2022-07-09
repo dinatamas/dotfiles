@@ -3,4 +3,4 @@ install/scripts/*
 !install/scripts/*.sh
 
 # Secret archive.
-install/resources/secrets.7z
+install/secrets.7z

@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 #
-# Source:
-#   - https://www.reddit.com/r/swaywm/comments/fjsrk9/comment/fkvjctd/
-#   - https://github.com/balta2ar/brotab/
+# Navigate to a firefox tab.
 #
 
-# Select a browser tab name.
+# Select a browser tab by its title.
+# https://github.com/balta2ar/brotab/
 tab=$(brotab list \
   | cut -d $'\t' -f1-2 \
   | column -t -s $'\t' \
@@ -21,6 +20,7 @@ tab=$(brotab list \
 })
 
 # Find the Firefox window the tab is in now.
+# https://www.reddit.com/r/swaywm/comments/fjsrk9/comment/fkvjctd/
 swaymsg -t get_tree | jq -r '
         # descend to workspace or scratchpad
         .nodes[].nodes[]

@@ -19,7 +19,8 @@ if ! string match '/dev/tty*' (tty) > /dev/null
   end
 end
 
-# Set tmux option to destroy the session.
+# Set tmux option to destroy the session,
+# when it was starting in alacritty.
 if test $TMUX_AUTOKILL
   tmux set-option destroy-unattached on
 end
