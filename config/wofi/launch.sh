@@ -32,8 +32,9 @@ if [ -f ~/.config/wofi/launch_local.sh ]; then
 fi
 
 selected=$(echo "$applist" \
-    | wofi -ai \
-        --show dmenu \
+    | wofi -aib \
+        --width 500 \
+        --dmenu \
         --lines 5 \
         --prompt  "" \
     | xargs swaymsg exec --)

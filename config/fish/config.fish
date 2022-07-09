@@ -3,9 +3,6 @@
 # Configuration for the Friendly Interactive SHell (fish).
 #
 
-# Disable greeting.
-set fish_greeting ""
-
 # Use bash in debug terminals.
 if string match -r '/dev/tty[2-9]' (tty) > /dev/null
   bash
@@ -26,6 +23,9 @@ end
 if test $TMUX_AUTOKILL
   tmux set-option destroy-unattached on
 end
+
+# Disable greeting.
+set fish_greeting ""
 
 # Configure paths.
 set -xg GOPATH     "/opt/go"
@@ -52,7 +52,7 @@ alias python    "ipython"
 alias shutdown  "shutdown now"
 alias sway      "sway --unsupported-gpu"
 alias tmux      "tmux -u"
-alias tree      "exa -a --tree --icons --level=2"
+alias tree      "exa -a --tree --icons --level=2 --ignore-glob='.git'"
 alias vim       "nvim"
 alias xelatex   "xelatex -halt-on-error"
 

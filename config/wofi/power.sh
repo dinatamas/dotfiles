@@ -5,8 +5,8 @@
 entries="logoff\nshutdown\nreboot\n"
 
 selected=$(printf $entries \
-    | wofi -ai \
-        --width 250 \
+    | wofi -aib \
+        --width 500 \
         --prompt  "" \
         --lines 3 \
         --dmenu \

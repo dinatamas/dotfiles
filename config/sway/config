@@ -13,14 +13,14 @@ set $exec_always exec_always --no-startup-id
 # Useful launchers.
 bindsym $mod+d $exec ~/.config/wofi/launch.sh
 bindsym $mod+p $exec ~/.config/wofi/power.sh
-bindsym $mod+f $exec ~/.config/wofi/focus.sh
+bindsym $mod+f $exec ~/.config/wofi/firefox.sh
 
 # Most common programs.
 bindsym $mod+Return $exec alacritty
 bindsym $mod+Shift+Return $exec firefox
 
 # Screenlock.
-bindsym $mod+x $exec swaylock -c 3b4252
+bindsym $mod+x $exec "swaylock -c 3b4252"
 
 # Background image.
 output * bg /usr/share/backgrounds/dinatamas/misty_forest.jpg fill

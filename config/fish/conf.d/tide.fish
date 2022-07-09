@@ -1,5 +1,8 @@
+#
 # https://github.com/IlanCosman/tide/wiki/Configuration
-# ~/.config/fish/functions/tide/configure/configs/rainbow.fish
+# ~/.config/fish/functions/tide/configure/configs/*.fish
+# Call `tide configure` with 311112222121 for first time setup.
+#
 
 # Gruvbox color scheme.
 set bg0 282828

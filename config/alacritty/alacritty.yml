@@ -9,13 +9,16 @@
 shell:
   program: /usr/bin/tmux
   args:
-    - -u
+    - -u  # Unicode support.
 
-# $TERM=alacritty doesn't advertise true colors.
-# Setting it to a terminal value that does will
-# allow applications to use all colors.
 env:
+  # $TERM=alacritty doesn't advertise true colors.
+  # Setting it to a terminal value that does will
+  # allow applications to use all colors.
   TERM: xterm-256color
+  # tmux sessions that were started using alacritty
+  # should not be persisted, that comes handy mostly
+  # for SSH sessions.
   TMUX_AUTOKILL: yes
 
 window:
@@ -45,7 +48,7 @@ font:
 hints:
   enabled: []
 
-# Color scheme.
+# Color scheme: gruvbox dark (medium).
 #   - https://www.ditig.com/256-colors-cheat-sheet
 #   - https://en.wikipedia.org/wiki/X11_color_names
 #   - https://github.com/eendroroy/alacritty-theme
