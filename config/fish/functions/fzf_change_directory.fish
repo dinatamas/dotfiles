@@ -1,14 +1,15 @@
-function peco_change_directory
+function fzf_change_directory
 
   begin
     # Directories to include:
     echo '~/'
     echo '~/.config'
-    find /opt/repo -maxdepth 3 -type d -not -path '*/.*'
-    find ~/ -maxdepth 3 -type d -not -path '*/.*'
+    find /opt/repo -maxdepth 5 -type d -not -path '*/.*'
+    find ~/Desktop -maxdepth 3 -type d -not -path '*/.*'
+    find ~/Downloads -maxdepth 3 -type d -not -path '*/.*'
     find ./ -maxdepth 3 -type d -not -path '*/.*'
   end | sed -e 's/\/$//' | awk '!a[$0]++' | \
-  peco --layout=bottom-up | perl -pe 's/([ ()])/\\\\$1/g' | read foo
+  fzf | perl -pe 's/([ ()])/\\\\$1/g' | read foo
 
   if [ $foo ]
     builtin cd $foo

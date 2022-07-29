@@ -19,8 +19,7 @@ if ! string match '/dev/tty*' (tty) > /dev/null
   end
 end
 
-# Set tmux option to destroy the session,
-# when it was starting in alacritty.
+# Set tmux option to destroy the session.
 if test $TMUX_AUTOKILL
   tmux set-option destroy-unattached on
 end
@@ -50,6 +49,7 @@ alias mv        "mv -i"
 alias rm        "rm -i"
 alias ping      "ping -c 3"
 alias python    "ipython"
+alias python3   "ipython"
 alias shutdown  "shutdown now"
 alias sway      "sway --unsupported-gpu"
 alias tmux      "tmux -u"
