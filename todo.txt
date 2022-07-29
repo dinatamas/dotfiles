@@ -1,0 +1,64 @@
+Tasks
+=====
+
+  - buffer deletion: multi-select with fzf!
+  - fix neotree git information somehow?
+    - or find git_status viewer with diff previews?
+  - read more vim and plugin key mappings
+  - improve custom key mappings
+  - https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#commands
+  - Plugins: coc.nvim, supertab, LSP stuff
+  - ask for confirmation on quit
+  - netrw is bad with vim .
+  - ranger / nnn: terminal file explorer
+  - fish z plugin is not required?
+  - ipython catches --help, after -- it doesn't catch -c or -m
+  - create delta theme and add params in fish config
+  - advanced git history grep / file following use cases?
+  - tmux: advanced vim-like navigation, selection, copy-paste
+
+https://github.com/craftzdog/dotfiles-public/blob/master/.config/nvim/plug.vim
+https://www.mitchellhanberg.com/uses/
+
+  - fzf even has a nice wiki with tips / suggestions:
+    https://github.com/junegunn/fzf#advanced-topics
+    https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings
+    https://github.com/junegunn/fzf/wiki/Examples-(fish)
+    https://github.com/junegunn/fzf/wiki/Related-projects
+    https://github.com/junegunn/fzf.vim#example-customizing-files-command
+  - kubernetes fish completion
+  - docker fish completion
+  - fzf interactive ripgrep launcher?
+  - fzf fuzzy completion for bash/zsh -> fish!
+  - fzf: nicer theme?
+
+  - add mkdir -m700 ~/.local/gnupg to install steps
+  - handle yay packages to install: like spotify!
+    - add command to list installed yay packages?
+  - Wofi latest: changed lines height screws up power.sh?
+  - Update .gitignore.
+  - Bring back wenv changes.
+    - e.g. other ignores (node_modules) - see gitignore
+  - handle wallpapers
+
+note: http://www.andre-simon.de/doku/highlight/en/highlight.php
+  - source code to HTML / LaTeX - cool for writeups!
+
+https://dev.to/iggredible/using-buffers-windows-and-tabs-efficiently-in-vim-56jc
+https://stackoverflow.com/questions/21331664/how-to-show-tab-close-button-in-gvim/21338192#21338192
+https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs
+https://moolenaar.net/habits.html
+http://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
+
+https://github.com/pavedroad-io/pavedroad/blob/master/devkit/states/vim/pr_vimrc_init
+https://github.com/pavedroad-io/pavedroad/blob/master/devkit/states/vim/pr_vimrc_plug
+
+The following just for any other language as well:
+  - <leader>g is too specific - use a language-agnostic keymap!
+https://www.pavedroad.io/part-3-vim-go-plugin/
+
+Fugitive:
+  - interactive stage/unstage (how about hunks - gitgutter helps?)
+  - gvdiffsplit: useful but is it a full-blown difftool?
+  - :G commit to make commiting "an interactive process"
+  vimcasts 31-35

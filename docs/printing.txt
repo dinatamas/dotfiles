@@ -1,21 +1,26 @@
 Printing
 ========
 
-* [1](https://wiki.archlinux.org/title/CUPS)
-* [2](https://wiki.archlinux.org/title/Canon_CAPT)
-* [3](https://wiki.archlinux.org/title/CUPS/Printer-specific_problems#Canon)
+This guide is for a Canon printer.
+
+[1](https://wiki.archlinux.org/title/CUPS)
+[2](https://wiki.archlinux.org/title/Canon_CAPT)
+[3](https://wiki.archlinux.org/title/CUPS/Printer-specific_problems#Canon)
+
+First time setup:
 
   - `sudo pacman -Sy cups cups-pdf`
   - `sudo systemctl start cups`
-  - `lsusb`
-    - Canon, Inc. LBP6300
-  - Enable multilib in pacman.
   - `yay -Sy capt-src`
-  - `lpinfo -m`
-    - CNCUPSLBP6300CAPTK.ppd
+  - `lsusb` and identify the USB printer device
+    - Example: Canon, Inc. LBP6300
+  - `lpinfo -m` and identify the exact device
+    - Example: CNCUPSLBP6300CAPTK.ppd
   - `sudo lpadmin -p lbp6300 -E -v ccp://localhost:59787 -m CNCUPSLBP6300CAPTK.ppd`
   - `sudo ccpdadmin -p lbp6300 -o /dev/usb/lp0`
-  - `sudo systemctl start ccpd`
-  - Ready to  print.
 
-After first-time setup it is enough to start the cups and ccpd services.
+General use:
+
+  - `sudo systemctl start cups`
+  - `sudo systemctl start ccpd`
+  - Ready to print.

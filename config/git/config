@@ -10,9 +10,14 @@
   autocrlf     = input
   editor       = nvim
   excludesfile = ~/.config/git/gitignore
+  pager        = delta
   quotepath    = off
 [credential]
   helper = cache --timeout=3600
+[delta]
+  features = my
+  # For more themes see:
+  # https://github.com/dandavison/delta/blob/master/themes.gitconfig
 [filter "lfs"]
   required = true
   clean = git-lfs clean -- %f
@@ -24,3 +29,18 @@
   name     = Tamás Dina
   email    = 53911660+dinatamas@users.noreply.github.com
   username = dinatamas
+
+[delta "my"]
+  dark = true
+  side-by-side = false
+  syntax-theme = gruvbox-dark
+  file-decoration-style = none
+  file-style = omit
+  hunk-header-decoration-style = "" box ul
+  hunk-header-file-style = ""
+  hunk-header-style = file line-number syntax
+  line-numbers = false
+  minus-empth-style = normal "#cc241d"
+  minus-style = normal "#fb4934"
+  plus-emph-style = normal "#79740e"
+  plus-style = normal "#98971a"

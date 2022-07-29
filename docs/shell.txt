@@ -1,0 +1,35 @@
+Shell Environment
+=================
+
+General:
+
+  - Ctrl+F to change directories with fuzzy find.
+  - Ctrl+R to search history and important commands.
+  - colortest: display terminal colors.
+
+Tmux:
+
+  Lot of useful navigation shortcuts: <action>+? to get help.
+
+  - Action key is space.
+  - Split vertically: <action>+v
+  - Split horizontally: <action>+h
+  - Open directory in new terminal window: <action>+o
+  - Navigate between panes using Alt+<arrow>
+  - Swap window to the left/right: Ctrl+Shift+<arrow>
+
+  - TODO: improved scrollback mode, selection and copy-paste!
+
+Git:
+
+  - a: fuzzy find changes to stage.
+  - df: fuzzy find files to diff.
+  - find: fuzzy find changes in commit history.
+  - hist: show summarized commit history.
+  - llog: show detailed commit history.
+  - unmerged-edit: edit unmerged files.
+  - unmerged-add: stage unmerged files.
+
+  - git add -p
+  - git branch -a
+  - git show <commit>

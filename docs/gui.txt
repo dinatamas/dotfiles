@@ -1,0 +1,21 @@
+Graphical Interface
+===================
+
+Caps Lock has been remapped to Ctrl.
+
+Sway + Wofi:
+
+  ! Note: install latest wofi master (https://hg.sr.ht/~scoopta/wofi).
+
+  For a more complete list of shortcuts see the config file.
+  Basic window navigation commands are not included here.
+
+  - Win+d: application launcher.
+  - Win+p: power menu.
+  - Win+f: firefox tab selector.
+  - Win+x: screenlock.
+
+  - PrtSc: screenshot the entire screen.
+  - Shift+PrtSc: screenshot a selected area of the screen.
+  - Ctrl+PrtSc: screenrecord the entire screen.
+  - Ctrl+Shift+PrtSc: screenrecord a selected area of the screen.

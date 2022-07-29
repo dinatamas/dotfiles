@@ -1,0 +1,6 @@
+Multiple Audio Outputs
+======================
+
+  - Enable: `pactl load-module module-combine-sink`
+  - If needed, restart pulseaudio with `pulseaudio -k`
+  - Then in `pavuctl` select the combined sink.

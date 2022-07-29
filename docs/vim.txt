@@ -1,0 +1,128 @@
+Neovim
+======
+
+Initial setup:
+
+  - [Install vim-plug](https://github.com/junegunn/vim-plug#unix-linux
+  - Install plugins: `:PlugInstall`
+  - Install: `sudo pacman -Sy ctags fzf ripgrep git-delta`
+  - Install: `pip install pynvim`
+
+Sometimes issue `:PlugUpgrade` and `:PlugUpdate` to keep things up-to-date.
+To clean older packages use `:PlugClean`.
+
+Custom keybindings:
+
+  - Leader: space
+  - Command prefix: .
+  - Escape (insert mode): Ctrl+e
+  - Toggle wrapping: <leader>w
+  - Clear highlights: Ctrl+h
+
+Navigation workflow:
+
+  - Avoid using windows and tabs.
+    - Move between windows: Ctrl+arrow.
+  - Ctrl+n to open the file explorer.
+    - Press / to fuzzy find files.
+  - Switch files: <leader>f to fuzzy find and preview files.
+  - Switch buffers: <leader>b to fuzzy find and preview buffers.
+  - <leader>g to recursively grep for a string.
+  - <leader>d to exit current buffer.
+  - <leader>D to exit a buffer by number.
+
+Plugins:
+
+  The plugin manager I use is vim-plug.
+
+  Gitgutter:
+    - Show git diff markers next to the lines.
+    - Jump between changes: [c and ]c
+    - Preview/stage/undo hunks: ;hp and ;hs and ;hu
+    - Load all changes to the quickfix list: :GitGutterQuickFix
+    - Fold all non-changed lines: :GitGutterFold
+    TODOs:
+      - Work with untracked (new and non-ignored) files!
+      - Find an alternative that can also handle unstaging hunks?
+      - Add and customize key mappings.
+      - GitGutterGetHunkSummary() in status line?
+      - Interacts well with vimdiff - so learn & improve that!
+      - https://github.com/airblade/vim-gitgutter#cycle-through-hunks-in-all-buffers
+      - Customize the colors of added/modified/removed lines!
+
+  Gruvbox:
+    - Nice colorscheme.
+
+  Lualine:
+    - Powerline-like statusline.
+    TODOs:
+      - Add new functions from other plugins as components.
+      - Configure other plugins as extensions.
+      - diagnostics: should use nvim_lsp?
+      - Match the colorscheme to the tmux scheme.
+
+  NerdTree:
+    - A file tree explorer. Press ? for help.
+    - Toggle: Ctrl+n
+    Plugins:
+      - git: Add git symbol support.
+      - syntax highlight: Add file type icons.
+    TODOs:
+      - Make the two plugins look nice together!
+
+  Tabline:
+    - Powerline-like tabline which also shows buffers.
+
+  Tagbar:
+    - A file structure explorer. Press ? for help.
+    - Toggle: Ctrl+t
+    TODOs:
+      - https://github.com/preservim/tagbar/wiki
+      - More configuration?
+      - https://github.com/dinatamas/dotfiles/blob/5d9dcce4b06fa68d60bf5618985930999be7ccc2/config/nvim/init.vim
+
+  vim-devicons:
+    - Nice icons that other plugins use.
+
+  vim-fish:
+    - Syntax highlight support for fish scripts.
+
+TODOs:
+  - Plugins: fugitive?
+  - Ugly TODO black highlight?
+  - Unneeded? autocmd!, syntax on, filetype plugin indent on
+  - au BufNewFile,BufRead *.txt set txt required? And for other fish/md/latex?
+  - Quicker keybindings for editing/navigating/closing buffers, tabs.
+  - Prompt for closing if there are more than one buffers?
+  - Unify every plugin where file / git modified etc. status symbols are present.
+  - Show only ephemeral windows! Like quick fixes? OR improve window navigation.
+  - Would be cool to know how to select non-following lines visually.
+    - Then this will be much more useful:
+    - https://github.com/PhilRunninger/nerdtree-visual-selection
+  - https://stackoverflow.com/questions/21140409/vim-warn-if-file-is-not-tracked-in-git
+  - Incorrect color scheme - wrong colors?
+  - TODO: change buffer prev/next to something p/n?
+
+" Split window
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w
+" Move window
+nmap <Space> <C-w>w
+map s<left> <C-w>h
+map s<up> <C-w>k
+map s<down> <C-w>j
+map s<right> <C-w>l
+map sh <C-w>h
+map sk <C-w>k
+map sj <C-w>j
+map sl <C-w>l
+" Resize window
+nmap <C-w><left> <C-w><
+nmap <C-w><right> <C-w>>
+nmap <C-w><up> <C-w>+
+nmap <C-w><down> <C-w>-
+
+au BufNewFile,BufRead *.fish                setf fish
+au BufNewFile,BufRead *git/config,gitconfig setf gitconfig
+au BufNewFile,BufRead *.md                  setf markdown
+set suffixesadd=.json,.py,.md

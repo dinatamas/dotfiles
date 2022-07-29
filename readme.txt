@@ -18,3 +18,6 @@ Inspiration
   [6](https://www.youtube.com/watch?v=sSOfr2MtRU8)
   [7](https://github.com/craftzdog/dotfiles-public)
 
+  - Vim as an IDE (12-part series):
+
+  [1](https://www.pavedroad.io/learning-center/vim-as-an-ide/)

@@ -2,12 +2,14 @@ Bluetooth
 =========
 
 [Wiki](https://wiki.archlinux.org/title/bluetooth)
+[Wiki](https://wiki.archlinux.org/title/bluetooth_headset)
 
 Packages to install: bluez, bluez-utils
 
 Configure bluetooth low energy (BLE) devices:
   [1](https://stackoverflow.com/a/65587222)
   Inside bluetoothctl: `menu scan`, `transport le`, `back`, `scan on`
+  Also try: `agent on`, `default-agent` and scan again
 
   - To start:
     - `systemctl start bluetooth`

@@ -1,7 +1,7 @@
 System monitoring
 =================
 
-Use the `btop` command.
+General system resource usage: `btop`
 
 Check the battery: `cat /sys/class/power_supply/BAT0/`
 
