@@ -122,10 +122,10 @@ bindsym XF86MonBrightnessUp $exec sudo light -A 10
 bindsym XF86MonBrightnessDown $exec sudo light -U 10
 
 # Audio controls.
-bindsym XF86AudioRaiseVolume $exec pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume $exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute $exec pactl set-sink-mute 0 toggle
-bindsym XF86AudioMicMute $exec pactl set-source-mute 0 toggle
+bindsym XF86AudioRaiseVolume $exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume $exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute $exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute $exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Power controls.
 bindsym XF86PowerOff $exec ~/.config/wofi/power.sh
@@ -134,14 +134,11 @@ bindsym XF86PowerOff $exec ~/.config/wofi/power.sh
 bindsym Print exec grim -c - | tee "$GRIM_DEFAULT_DIR/$(date '+%Y-%m-%d_%H-%M-%S').png" | wl-copy
 # Screenshot the selected area of the screen.
 bindsym Shift+Print exec grim -c -g "$(slurp)" - | tee "$GRIM_DEFAULT_DIR/$(date '+%Y-%m-%d_%H-%M-%S').png" | wl-copy
-# TODO: Screenshot the selected window. There is a way!
 
 # Screenrecord entire screen.
 bindsym Ctrl+Print exec ~/.config/sway/record.sh
 # Screenrecord the selected area of the screen.
-# bindsym Ctrl+Shift+Print exec ~/.config/sway/record.sh -g "$(slurp)"
-# TODO: Screenrecord the selected window. Is there a way?
-# TODO: Find a better key combination for these!
+bindsym Ctrl+Shift+Print exec ~/.config/sway/record.sh -g "$(slurp)"
 
 # Color variables.
 set $bg            #282828
