@@ -37,11 +37,11 @@ alias cat       "bat -p"
 alias cp        "rsync -ah"
 alias dd        "dd status=progress"
 alias df        "df -ha"
-alias diff      "diff --color=auto"
+alias diff      "delta --wrap-max-lines 0"
 alias du        "du -h --max-depth=1"
 alias feh       "feh --scale-down --draw-filename --auto-rotate --auto-reload"
-alias grep      "grep --color=auto -nI --exclude-dir=.git"
-alias less      "bat"
+alias grep      "rg --crlf --hidden -M=2000 --max-columns-preview -pSL"
+alias less      "bat --wrap=never"
 alias ll        "exa -alg --icons --git"
 alias ls        "exa -a"
 alias mkdir     "mkdir -p"
@@ -53,7 +53,7 @@ alias python3   "ipython"
 alias shutdown  "shutdown now"
 alias sway      "sway --unsupported-gpu"
 alias tmux      "tmux -u"
-alias tree      "exa -a --tree --icons --level=2 --ignore-glob='.git'"
+alias tree      "exa -a --tree --icons --level=2"
 alias vim       "nvim"
 alias xelatex   "xelatex -halt-on-error"
 
@@ -101,6 +101,12 @@ set -xg VISUAL  "nvim"
 source ~/.config/fish/conf.d/gruvbox.fish
 theme_gruvbox dark medium
 source ~/.config/fish/conf.d/tide.fish
+
+# Custom function key bindings.
+bind \cr fzf_select_command
+bind \cf fzf_change_directory
+# Prevent terminal from closing when typing Ctrl-D (EOF).
+bind \cd delete-char
 
 # Start the graphical interface at first login.
 if test (tty) = "/dev/tty1"

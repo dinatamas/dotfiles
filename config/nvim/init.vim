@@ -11,12 +11,13 @@ nnoremap Q: <nop>
 map q <Nop>
 inoremap <C-e> <Esc>
 command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>write<bang> <args>
-command! -bang Q quit<bang>
+command! -bang Q close<bang>
+command! -bang Quit quit<bang>
+cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'close' : 'q')<CR>
 
 " Faster navigation and file handling.
 " Manage buffers.
 map <leader>d :bp\|bd #<cr>
-nnoremap <leader>D :ls<cr>:bd<space>
 " Manage windows.
 map <C-Up> <C-w>k
 map <C-Down> <C-w>j
@@ -104,12 +105,39 @@ set updatetime=100
 set wildignore+=*/git/*
 set wildignorecase
 
-" FZF.
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>g :Rg<cr>
+" FZF
+let g:fzf_command_prefix='Fzf'
+nnoremap <leader>b :FzfBuffers<cr>
+nnoremap <leader>f :FzfFiles<cr>
+nnoremap <leader>g :FzfRg<cr>
+nnoremap <leader>t :FzfTags<cr>
+" The following enables multi-select buffer deletion.
+" It is almost entirely copy-pasted from the :Buffers command.
+" Use Tab to mark multiple buffers.
+function! FzfBufferDelete(lines)
+  for line in a:lines
+    let b = matchstr(line, '\[\zs[0-9]*\ze\]')
+    execute 'bd' b
+  endfor
+endfunction
+function! FzfBuffersDelete(...)
+  let [query, args] = (a:0 && type(a:1) == type('')) ? [a:1, a:000[1:]] : ['', a:000]
+  let sorted = fzf#vim#_buflisted_sorted()
+  let header_lines = '--header-lines=' . (bufnr('') == get(sorted, 0, 0) ? 1 : 0)
+  let tabstop = len(max(sorted)) >= 4 ? 9 : 8
+  return fzf#run(fzf#wrap('bufferdelete', {
+  \ 'source':  map(sorted, 'fzf#vim#_format_buffer(v:val)'),
+  \ 'sink*':   function('FzfBufferDelete'),
+  \ 'options': ['--multi', '-x', '--tiebreak=index', header_lines, '--ansi', '-d',
+  \             '\t', '--with-nth', '3..', '-n', '2,1..2', '--prompt', 'Buf> ',
+  \             '--query', query, '--preview-window', '+{2}-/2', '--tabstop', tabstop]
+  \}))
+endfunction
+command! -bar -bang -nargs=? -complete=buffer FzfBuffersDeleteCmd
+  \ call FzfBuffersDelete(<q-args>, fzf#vim#with_preview({ "placeholder": "{1}" }), <bang>0)
+nnoremap <leader>D :FzfBuffersDeleteCmd<cr>
 
-" Gitgutter.
+" Gitgutter
 set foldtext=gitgutter#fold#foldtext()
 let g:gitgutter_highlight_linenrs=1
 let g:gitgutter_set_sign_backgrounds=0
@@ -123,7 +151,7 @@ hi link GitGutterChangeLineNr GitGutterChange
 hi link GitGutterDeleteLineNr GitGutterDelete
 hi link GitGutterChangeDeleteLineNr GitGutterChangeDelete
 
-" Lualine.
+" Lualine
 lua << END
 require('lualine').setup({
   options = { globalstatus = true },
@@ -133,7 +161,12 @@ require('lualine').setup({
 })
 END
 
-" Neotree.
+" Mason
+lua << END
+require("mason").setup()
+END
+
+" Neotree
 nnoremap <C-n> :Neotree toggle float<cr>
 lua << END
 require('neo-tree').setup({
@@ -144,5 +177,53 @@ require('neo-tree').setup({
 })
 END
 
-" Tagbar.
+" LSPs, linters, formatters.
+set completeopt=menuone,noinsert,noselect,preview
+nnoremap <C-n> <nop>
+inoremap <C-n> <nop>
+nnoremap <C-p> <nop>
+inoremap <C-p> <nop>
+lua << END
+local cmp = require('cmp')
+local lspkind = require('lspkind')
+cmp.setup({
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-n>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<C-p>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<C-e>'] = cmp.mapping.abort()
+  },
+  sources = cmp.config.sources(
+    {{ name = 'nvim_lsp' },},
+    {{ name = 'nvim_lsp_signature_help' },},
+    {{ name = 'buffer' },}
+  ),
+  formatting = {
+    format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+  }
+})
+vim.cmd [[highlight! default link CmpItemKind CmpItemMenuDefault]]
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+require('lspconfig')['jedi_language_server'].setup({
+  capabilities = capabilities
+})
+END
+
+" Tagbar
 nmap <C-t> :TagbarToggle<cr>

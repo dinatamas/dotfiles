@@ -1,21 +1,21 @@
 Tasks
 =====
 
-  - buffer deletion: multi-select with fzf!
-  - fix neotree git information somehow?
-    - or find git_status viewer with diff previews?
-  - read more vim and plugin key mappings
-  - improve custom key mappings
+  - venv, node_modules should not be searched! ever!
+  - use a common tag file / tag directory
+    - https://vim.fandom.com/wiki/Browsing_programs_with_tags
+  - rewrite the install stuff and the gitignore
   - https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#commands
   - Plugins: coc.nvim, supertab, LSP stuff
   - ask for confirmation on quit
-  - netrw is bad with vim .
+  - vim . brings up not-so-ideal file explorer layout
   - ranger / nnn: terminal file explorer
-  - fish z plugin is not required?
+  - fish z plugin is not required
   - ipython catches --help, after -- it doesn't catch -c or -m
   - create delta theme and add params in fish config
   - advanced git history grep / file following use cases?
   - tmux: advanced vim-like navigation, selection, copy-paste
+    - https://stackoverflow.com/a/31159025
 
 https://github.com/craftzdog/dotfiles-public/blob/master/.config/nvim/plug.vim
 https://www.mitchellhanberg.com/uses/
@@ -36,7 +36,6 @@ https://www.mitchellhanberg.com/uses/
   - handle yay packages to install: like spotify!
     - add command to list installed yay packages?
   - Wofi latest: changed lines height screws up power.sh?
-  - Update .gitignore.
   - Bring back wenv changes.
     - e.g. other ignores (node_modules) - see gitignore
   - handle wallpapers
@@ -62,3 +61,51 @@ Fugitive:
   - gvdiffsplit: useful but is it a full-blown difftool?
   - :G commit to make commiting "an interactive process"
   vimcasts 31-35
+  - Use more extensively! :Git blame, diff, etc.
+
+Document more: quit vs close
+
+- Toggle GitGutter?
+
+Python LSP and stuff:
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jedi_language_server
+  - :PlugInstall
+  - :Mason
+  - select jedi-language-server
+    - Press i
+  - Profit???
+
+  + linters
+  + formatters
+
+https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
+https://github.com/neovim/nvim-lspconfig#suggested-configuration
+
+
+Also: treesitter is probably a good thing?
+https://github.com/nvim-treesitter/nvim-treesitter
+Maybe even snippets?? LuaSnip? - see nvim-cmp for extras!
+Other plugins: Ferret, Ultisnips, SuperTab
+
+
+Is ryanoasis/vim-devicons really required?
+
+- lspsaga?
+- lspkind?
+- https://github.com/onsails/diaglist.nvim
+
+nvim-cmp provides documentation previews or what?
+is coc.nvim better than nvim-cmp though?
+  - e.g. does that show some details about the completion list menu item?
+Some even nicer menus?
+https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
+SuperTab is mentioned here!
+  https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
+
+Document, learn more, reorganize, recomment new stuff!
+
+
+:G diff should show current buffer?
+
+Use :confirm?
+https://stackoverflow.com/questions/12556267/how-to-prevent-quitting-vim-accidentally

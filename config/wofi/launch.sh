@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 #
 # wofi application menu.
 #
@@ -26,8 +27,9 @@ vlc
 
 selected=$(echo "$applist" \
     | wofi -aib \
+        --matching fuzzy \
         --width 500 \
+        --height 260 \
         --dmenu \
-        --lines 5 \
         --prompt  "" \
     | xargs swaymsg exec --)

@@ -6,9 +6,10 @@ entries="logoff\nshutdown\nreboot\n"
 
 selected=$(printf $entries \
     | wofi -aib \
+        --matching fuzzy \
         --width 500 \
+        --height 160 \
         --prompt  "" \
-        --lines 3 \
         --dmenu \
         --cache-file /dev/null \
     | awk '{print tolower($1)}')

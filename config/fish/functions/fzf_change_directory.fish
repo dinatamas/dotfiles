@@ -2,8 +2,8 @@ function fzf_change_directory
 
   begin
     # Directories to include:
-    echo '~/'
-    echo '~/.config'
+    echo ~/
+    echo ~/.config
     find /opt/repo -maxdepth 5 -type d -not -path '*/.*'
     find ~/Desktop -maxdepth 3 -type d -not -path '*/.*'
     find ~/Downloads -maxdepth 3 -type d -not -path '*/.*'
